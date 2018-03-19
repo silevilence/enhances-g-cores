@@ -2,7 +2,7 @@
 // @name         g-cores-volumes
 // @name:zh-cn   机核电台页面增强
 // @namespace    https://github.com/silevilence/enhances-g-cores
-// @version      1.1
+// @version      1.2
 // @description  add functions to volumes page of g-cores
 // @description:zh-cn  在机核的电台页面上增加（大概）有用的功能
 // @author       Silevilence
@@ -54,17 +54,20 @@ let img_urls;
     $(function () {
         $(download_link).click(
             // 链接调用的总方法，点击后在新页面展示所有时间轴图片地址
-            // 由于写在外面会由于不明原因被调用一次，故作为匿名函数放入
             // noinspection ES6ConvertVarToLetConst, JSUnusedLocalSymbols
             function () {
                 // open new tab and show urls
-                let str = ['<pre>', img_urls.join('\n'), '</pre>'];
-                let win = window.open('', '_blank');
+                // let str = ['<pre>', img_urls.join('\n'), '</pre>'];
+                let str_urls = $.map(img_urls, function (url) {
+                    return `<a href='${url}' target='_blank'>${url}</a>`;
+                });
+                let win = window.open(document.URL, '_blank');
                 if (!win) {
                     alert('弹出窗口被拦截，请允许该网站弹出窗口。');
                     return;
                 }
-                win.document.write(str.join('\n'));
+                // win.document.write(str.join('\n'));
+                win.document.write(str_urls.join('<br/>'));
             }
         );
     });

@@ -10,8 +10,39 @@
 // @match        http*://www.g-cores.com/volumes/*
 // ==/UserScript==
 
+let img_urls;
 (function () {
     'use strict';
+
+    // 首先获取时间轴的图片（在class为audio_dot_img的div下）
+    // 根据播放进度有textarea和img的区别，需要全部获取并整合
+    // 最后需要加上题图（img.img-responsive）
+    let divs = $('div.audio_dot_img');
+
+    // img in textarea
+    // noinspection JSValidateTypes
+    let textareas = divs.children('textarea');
+    // get img urls
+    // img标签以文本的方式放在textarea中，取出文本后用引号分割来获取url
+    let urls = textareas.map(function () {
+        return $(this).text().split(/['"]+/)[1];
+    });
+
+    // img in img
+    // 已播放前后的图片被解析为img标签，直接获取即可
+    // noinspection JSValidateTypes
+    let imgs = divs.children('img');
+    imgs.each(function () {
+        urls.push($(this).attr('src'));
+    });
+
+    // 题图
+    urls.push($('img.img-responsive').attr('src'));
+
+    // remove _limit in url
+    img_urls = $.map(urls, function (value) {
+        return value.split('_limit').join('');
+    });
 
     // generate element a and set it to show urls in new tab
     // element a
@@ -22,42 +53,12 @@
     $(download_link).attr('href', '#');
     $(function () {
         $(download_link).click(
-            // 链接调用的总方法，点击后获取所有时间轴图片地址并在新页面展示
+            // 链接调用的总方法，点击后在新页面展示所有时间轴图片地址
             // 由于写在外面会由于不明原因被调用一次，故作为匿名函数放入
             // noinspection ES6ConvertVarToLetConst, JSUnusedLocalSymbols
             function () {
-                // 首先获取时间轴的图片（在class为audio_dot_img的div下）
-                // 根据播放进度有textarea和img的区别，需要全部获取并整合
-                // 最后需要加上题图（img.img-responsive）
-                let divs = $('div.audio_dot_img');
-
-                // img in textarea
-                // noinspection JSValidateTypes
-                let textareas = divs.children('textarea');
-                // get img urls
-                // img标签以文本的方式放在textarea中，取出文本后用引号分割来获取url
-                let urls = textareas.map(function () {
-                    return $(this).text().split(/['"]+/)[1];
-                });
-
-                // img in img
-                // 已播放前后的图片被解析为img标签，直接获取即可
-                // noinspection JSValidateTypes
-                let imgs = divs.children('img');
-                imgs.each(function () {
-                    urls.push($(this).attr('src'));
-                });
-
-                // 题图
-                urls.push($('img.img-responsive').attr('src'));
-
-                // remove _limit in url
-                let urls_modified = $.map(urls, function (value) {
-                    return value.split('_limit').join('');
-                });
-
                 // open new tab and show urls
-                let str = ['<pre>', urls_modified.join('\n'), '</pre>'];
+                let str = ['<pre>', img_urls.join('\n'), '</pre>'];
                 let win = window.open('', '_blank');
                 if (!win) {
                     alert('弹出窗口被拦截，请允许该网站弹出窗口。');

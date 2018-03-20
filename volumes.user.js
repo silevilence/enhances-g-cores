@@ -2,7 +2,7 @@
 // @name         g-cores-volumes
 // @name:zh-cn   机核电台页面增强
 // @namespace    https://github.com/silevilence/enhances-g-cores
-// @version      1.2
+// @version      1.2.1
 // @description  add functions to volumes page of g-cores
 // @description:zh-cn  在机核的电台页面上增加（大概）有用的功能
 // @author       Silevilence
@@ -68,7 +68,7 @@ let img_urls;
                     return;
                 }
                 // win.document.write(str.join('\n'));
-                win.document.write(str_urls.join('<br/>'));
+                win.document.write(`<pre>${str_urls.join('<br/>')}</pre>`);
             }
         );
     });

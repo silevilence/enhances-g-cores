@@ -9,6 +9,7 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js
 // @match        http*://www.g-cores.com/volumes/*
 // @supportURL   https://github.com/silevilence/enhances-g-cores/issues
+// @contributionURL https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=silevilence@outlook.com&item_name=Greasy+Fork+donation
 // ==/UserScript==
 
 let img_urls;

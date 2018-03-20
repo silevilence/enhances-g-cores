@@ -8,6 +8,7 @@
 // @author       Silevilence
 // @require      https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js
 // @match        http*://www.g-cores.com/volumes/*
+// @supportURL   https://github.com/silevilence/enhances-g-cores/issues
 // ==/UserScript==
 
 let img_urls;

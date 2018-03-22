@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name   机核电台页面增强
 // @namespace    https://github.com/silevilence/enhances-g-cores
-// @version      1.2.2
+// @version      1.2.3
 // @description  在机核的电台页面上增加（大概）有用的功能
 // @author       Silevilence
 // @match        http*://www.g-cores.com/volumes/*
@@ -49,7 +49,7 @@ let img_urls;
     // set href to show img urls
     // $(download_link).attr('href', 'javascript:show_img_urls();');
     // $(download_link).click(show_img_urls());
-    $(download_link).attr('href', '#');
+    $(download_link).attr('href', 'javascript:;');
     $(function () {
         $(download_link).click(
             // 链接调用的总方法，点击后在新页面展示所有时间轴图片地址

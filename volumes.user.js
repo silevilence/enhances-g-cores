@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name   机核电台页面增强
 // @namespace    https://github.com/silevilence/enhances-g-cores
-// @version      1.2.3
+// @version      1.2.4
 // @description  在机核的电台页面上增加（大概）有用的功能
 // @author       Silevilence
 // @match        http*://www.g-cores.com/volumes/*

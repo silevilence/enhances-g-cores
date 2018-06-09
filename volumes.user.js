@@ -5,6 +5,7 @@
 // @description  在机核的电台页面上增加（大概）有用的功能
 // @author       Silevilence
 // @match        http*://www.g-cores.com/volumes/*
+// @match        http*://www.g-cores.com/radios/*
 // @supportURL   https://github.com/silevilence/enhances-g-cores/issues
 // @contributionURL https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=silevilence@outlook.com&item_name=Greasy+Fork+donation
 // ==/UserScript==
